@@ -1,0 +1,22 @@
+
+
+
+H.W4///
+
+
+double	8 bytes	
+Stores fractional numbers, containing one or more decimals. Sufficient for storing 15 decimal digits.
+
+Unsigned integers 32 bytes
+An UnsignedByte is like a Byte, but its values range from 0 to 255 instead of -128 to 127
+allow you to store numbers without worrying about whether they are positive or negative.
+
+
+
+long  32 bytes
+Long signed integer type. Capable of containing at least.
+
+
+pointers
+while for a 64-bit computer machine, it would be 8 bytes
+A pointer is a variable that stores the memory address of another variable as its value.
