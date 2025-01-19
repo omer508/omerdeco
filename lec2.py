@@ -1,11 +1,11 @@
-c=1   
-while c<10:
-    if c%2==0:
-        print(c)
-    if c==8:
-        c=1
-        for c in range(9):
-            if c%2!=0:
-                print(c)
-    
-    c=c+1
+x =[2,4,6]
+r=len(x)
+
+print(f"list length is :{r}")
+print(f"The list values:-")
+for i in range(len(x)):
+    w=x[i]+x[i]
+print(w)
+
+
+
