@@ -26,7 +26,7 @@ class school:
             if school.num_classrooms[i] == 0:
                 school.num_classrooms[i]+=1
             
-            print(school.num_classrooms[i])
+            print(cls.num_classrooms[i])
    #method
 
     def info(self):
