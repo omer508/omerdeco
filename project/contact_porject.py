@@ -57,7 +57,17 @@ class ContactBook:
 
 while True:
     try:
-        command = input("What do you want: ") 
+        print("welcome to contact book app you can:")
+        print("add contact")
+        print("delete contact")
+        print("make call")
+        print("get history")
+        print("merge")
+        print("done")
+       
+
+        command = input("What do you want: ")
+
         if command == "add contact":
             name = input("Enter name: ")
             phone_number = input("Enter number: ")
@@ -68,7 +78,7 @@ while True:
             ContactBook.remove_contact(phone_number)
 
         elif command == "make call":
-            phone_number = input("Enter number to call: ")
+            phone_number = input("What the number you wante to call: ")
             ContactBook.make_call(phone_number)    
 
         elif command == "get history":
