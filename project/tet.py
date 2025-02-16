@@ -3,13 +3,13 @@ class ContactBook:
     history = {} 
     num_call = 0 
 
-    def init(self, name, phone_number):
+    def _init_(self, name, phone_number):
         self.name = name
         self.phone_number = phone_number 
         ContactBook.contacts[phone_number] = name
         ContactBook.history[phone_number] = []
 
-    def str(self):
+    def _str_(self):
         return f"{self.name}: {self.phone_number}"   
     
     @classmethod
@@ -59,18 +59,6 @@ class ContactBook:
         print("Contacts stored:")
         for phone_number, name in ContactBook.contacts.items():
             print(f"{name}: {phone_number}")
-
-    @classmethod
-    def view_contacts(cls):
-        
-        for number, name in cls.contacts.items():
-                
-                print(f"{name}: {number}")
-
-        else:
-                print("No contacts saved yet.")
-
-
     @classmethod    
     def edit_contact(cls, phone_number,name):
         for  phone_number,name in cls.contacts:
@@ -93,7 +81,6 @@ print("make call")
 print("get history")
 print("store")
 print("merge")
-print("view")
 print("done")
 print("Enter a command to continue.")       
 
@@ -133,8 +120,8 @@ while True:
                 
         elif command == "store":
            
-            phone_number = input("Enter number to edit: ")
-            name=input("enter the name to edit ")
+            phone_number = input("Enter number : ")
+            name=input("enter the name :")
             print(ContactBook.store_contacts( phone_number,name)) 
 
 
@@ -146,11 +133,6 @@ while True:
 
             ContactBook.merge_contacts(old_num,contact2 )
 
-        elif command == "view contacts":
-            show={} 
-            ContactBook.view_contacts()
-            show=ContactBook.view_contacts()
-            print(show)
     
         elif command == "done":
             print("Contact book closed.")
@@ -161,3 +143,6 @@ while True:
 
     except ValueError:
         print("Error: The number must be a valid integer.")
+
+
+        
