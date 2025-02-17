@@ -2,12 +2,14 @@ class ContactBook:
     contacts = {}  
     history = {} 
     num_call = 0 
-
+    store=[]
+    new_contact ={}
     def _init_(self, name, phone_number):
         self.name = name
         self.phone_number = phone_number 
-        ContactBook.contacts[phone_number] = name
+        ContactBook.contacts[name] =phone_number
         ContactBook.history[phone_number] = []
+        ContactBook.store.append(name,phone_number)
 
     def _str_(self):
         return f"{self.name}: {self.phone_number}"   
@@ -20,6 +22,19 @@ class ContactBook:
             cls.contacts[phone_number] = name
             cls.history[phone_number] = []  
             print(f"The number has been added: {name} ({phone_number}) ")
+
+
+    @classmethod
+    def contact_book(cls ,name,phone_number):
+       for name,phone_number in cls.store:
+           if name and phone_number in cls.store:
+                #print(f"{name}: {phone_number}")
+                return f"{name}: {phone_number}"
+           else:
+                print("Number not found in contacts.")
+           
+    
+        
 
     @classmethod
     def remove_contact(cls, phone_number):
@@ -44,21 +59,22 @@ class ContactBook:
             print("Number not found in contacts.")
 
     @classmethod
-    def merge_contacts(cls, num1, num2):
-        if num1 in cls.contacts and num2 in cls.contacts:
-            cls.history[num1].append(cls.history.get(num2, []))
-            print(f"Contacts merged: {num2} → {num1}")
-        else:
-            print("One or both numbers not found in contacts.")
-
+    def merge_contacts(cls):
+        for name, phone_number in cls.new_contact.items():
+                cls.contacts[name] = phone_number
+                print(cls.contacts)
+                print(f"Contacts merged successfully")
+       
+            
     @classmethod
     def store_contacts(cls, phone_number,name):
-        if not ContactBook.contacts:  
-            print("No contacts stored yet.")
-            return  
-        print("Contacts stored:")
-        for phone_number, name in ContactBook.contacts.items():
-            print(f"{name}: {phone_number}")
+        if phone_number in cls.contacts:
+            print("This number already exists.")
+        else:
+            cls.contacts[phone_number] = name 
+            print(f"The number has been added: {name} ({phone_number}) ")
+            cls.store.append(ContactBook.contacts[phone_number])
+            return f"{name}: {phone_number}"
     @classmethod    
     def edit_contact(cls, phone_number,name):
         for  phone_number,name in cls.contacts:
@@ -68,13 +84,13 @@ class ContactBook:
                 cls.contacts[phone_number] = name 
 
             print(f"The contact has been edited: {name} ({phone_number}) ")
-            print("Contact edited successfully.")
+           
         else:
             print("Number not found in contacts.")
 
 
 print("welcome to contact book app you can:")
-print("add contact")
+print("add")
 print("delete contact")
 print("edit")
 print("make call")
@@ -91,11 +107,11 @@ while True:
 
         command = input("What do you want: ")
 
-        if command == "add contact":
+        if command == "add":
             name = input("Enter name: ")
             phone_number = input("Enter number: ")
             ContactBook.add_person(name, phone_number)
-  
+        
         elif command == "delete contact":
             phone_number = input("Enter number to delete: ")
             ContactBook.remove_contact(phone_number)
@@ -120,19 +136,17 @@ while True:
                 
         elif command == "store":
            
-            phone_number = input("Enter number : ")
-            name=input("enter the name :")
-            print(ContactBook.store_contacts( phone_number,name)) 
+            ContactBook.store_contacts(name,phone_number)
 
 
         elif command == "merge":
-            num1 = input("Enter second number: ")
-            name2 = input("Enter second name: ")
-            contact2=ContactBook.add_person(name2, num1)
-            old_num = input("Enter first number: ")
+            name = input("Enter name: ")
+            phone_number = input("Enter number: ")
+            ContactBook.new_contact[name] = phone_number
+            ContactBook.merge_contacts()
 
-            ContactBook.merge_contacts(old_num,contact2 )
 
+            
     
         elif command == "done":
             print("Contact book closed.")
